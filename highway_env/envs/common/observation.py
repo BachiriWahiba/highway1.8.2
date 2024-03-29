@@ -185,7 +185,7 @@ class KinematicObservation(ObservationType):
         For now, assume that the road is straight along the x axis.
         :param Dataframe df: observation data
         """
-        dict1 = [{'p': 1.0, 'x': 1.0, 'y': 2.40113945e-06, 'vx': 0.375, 'vy': 5.09057713e-07}, {'p': 0.0, 'x': 0.0, 'y': 0.0, 'vx': 0.0, 'vy': 0.0}, {'p': 1.0, 'x': 0.0081631857, 'y': 0.0, 'vx': -0.109995259, 'vy': -6.09057733e-07}, {'p': 0.0, 'x': 0.0, 'y': 0.0, 'vx': 0.0, 'vy': 0.0}, {'p': 0.0, 'x': 0.0, 'y': 0.0, 'vx': 0.0, 'vy': 0.0}]
+        dict1 =  [{'presence': 1.0, 'x': 1.0, 'y': 2.40113945e-06, 'vx': 0.375, 'vy': 5.09057713e-07}, {'presence': 0.0, 'x': 0.0, 'y': 0.0, 'vx': 0.0, 'vy': 0.0}, {'presence': 1.0, 'x': 0.0081631857, 'y': 0.0, 'vx': -0.109995259, 'vy': -6.09057733e-07}, {'presence': 0.0, 'x': 0.0, 'y': 0.0, 'vx': 0.0, 'vy': 0.0}, {'presence': 0.0, 'x': 0.0, 'y': 0.0, 'vx': 0.0, 'vy': 0.0}]
         df = pd.DataFrame.from_records(dict1)
         if not self.features_range:
             side_lanes = self.env.road.network.all_side_lanes(self.observer_vehicle.lane_index)
