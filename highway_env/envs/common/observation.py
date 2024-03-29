@@ -200,7 +200,7 @@ class KinematicObservation(ObservationType):
                     df[feature] = np.clip(df[feature], -1, 1)
         return df
 
-    def observe(self) -> np.ndarray:
+    def observe(self) -> Tuple[np.ndarray,np.ndarray] :
         if not self.env.road:
             return np.zeros(self.space().shape)
 
@@ -218,6 +218,8 @@ class KinematicObservation(ObservationType):
                 [v.to_dict(origin, observe_intentions=self.observe_intentions)
                  for v in close_vehicles[-self.vehicles_count + 1:]])[self.features]],
                            ignore_index=True)
+        
+        obs_before = df[self.features].values.view()
         # Normalize and clip
         if self.normalize:
             df = self.normalize_obs(df)
@@ -231,7 +233,7 @@ class KinematicObservation(ObservationType):
         if self.order == "shuffled":
             self.env.np_random.shuffle(obs[1:])
         # Flatten
-        return obs.astype(self.space().dtype)
+        return obs.astype(self.space().dtype) , obs_before.astype(self.space().dtype)
 
 
 class OccupancyGridObservation(ObservationType):
