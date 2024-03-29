@@ -187,7 +187,7 @@ class AbstractEnv(gym.Env):
               *,
               seed: Optional[int] = None,
               options: Optional[dict] = None,
-    ) -> Tuple[Observation, dict]:
+    ) -> Tuple[Observation, Observation ,dict]:
         """
         Reset the environment to it's initial configuration
 
@@ -208,7 +208,7 @@ class AbstractEnv(gym.Env):
         info = self._info(obs, action=self.action_space.sample())
         if self.render_mode == 'human':
             self.render()
-        return obs, info
+        return obs[0], obs[1], info
 
     def _reset(self) -> None:
         """
