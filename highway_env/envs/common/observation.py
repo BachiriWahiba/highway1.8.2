@@ -185,6 +185,8 @@ class KinematicObservation(ObservationType):
         For now, assume that the road is straight along the x axis.
         :param Dataframe df: observation data
         """
+        dict1 = [{'p': 1.0, 'x': 1.0, 'y': 2.40113945e-06, 'vx': 0.375, 'vy': 5.09057713e-07}, {'p': 0.0, 'x': 0.0, 'y': 0.0, 'vx': 0.0, 'vy': 0.0}, {'p': 1.0, 'x': 0.0081631857, 'y': 0.0, 'vx': -0.109995259, 'vy': -6.09057733e-07}, {'p': 0.0, 'x': 0.0, 'y': 0.0, 'vx': 0.0, 'vy': 0.0}, {'p': 0.0, 'x': 0.0, 'y': 0.0, 'vx': 0.0, 'vy': 0.0}]
+        df = pd.DataFrame.from_records(dict1)
         if not self.features_range:
             side_lanes = self.env.road.network.all_side_lanes(self.observer_vehicle.lane_index)
             self.features_range = {
@@ -223,6 +225,7 @@ class KinematicObservation(ObservationType):
         # Normalize and clip
         if self.normalize:
             df = self.normalize_obs(df)
+        print("df1 = ",df)
         # Fill missing rows
         if df.shape[0] < self.vehicles_count:
             rows = np.zeros((self.vehicles_count - df.shape[0], len(self.features)))
@@ -233,6 +236,7 @@ class KinematicObservation(ObservationType):
         if self.order == "shuffled":
             self.env.np_random.shuffle(obs[1:])
         # Flatten
+        print("df1 = ",df)
         return obs.astype(self.space().dtype) , obs_before.astype(self.space().dtype)
 
 
