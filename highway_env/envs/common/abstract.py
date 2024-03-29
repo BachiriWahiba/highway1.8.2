@@ -218,7 +218,7 @@ class AbstractEnv(gym.Env):
         """
         raise NotImplementedError()
 
-    def step(self, action: Action) -> Tuple[Observation,Observation, float, bool, bool, dict]:
+    def step(self, action: Action) -> Tuple[Observation, float, bool, bool, dict]:
         """
         Perform an action and step the environment dynamics.
 
@@ -242,7 +242,7 @@ class AbstractEnv(gym.Env):
         if self.render_mode == 'human':
             self.render()
 
-        return obs[0],obs[1], reward, terminated, truncated, info
+        return obs, reward, terminated, truncated, info
 
     def _simulate(self, action: Optional[Action] = None) -> None:
         """Perform several steps of simulation with constant action."""
