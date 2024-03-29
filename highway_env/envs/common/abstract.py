@@ -238,7 +238,7 @@ class AbstractEnv(gym.Env):
         reward = self._reward(action)
         terminated = self._is_terminated()
         truncated = self._is_truncated()
-        info = self._info(obs, action)
+        info = self._info(obs[0], action)
         if self.render_mode == 'human':
             self.render()
 
