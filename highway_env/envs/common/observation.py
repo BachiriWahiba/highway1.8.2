@@ -236,7 +236,7 @@ class KinematicObservation(ObservationType):
         if self.order == "shuffled":
             self.env.np_random.shuffle(obs[1:])
         # Flatten
-        print("df1 = ",df)
+        print("df2 = ",df)
         return obs.astype(self.space().dtype) , obs_before.astype(self.space().dtype)
 
 
